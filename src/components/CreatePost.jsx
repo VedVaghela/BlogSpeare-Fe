@@ -2,23 +2,24 @@ import {useState} from 'react'
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import { Navigate } from 'react-router-dom'
+import { Editor } from './Editor'
 
-const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline','strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
-      ['clean']
-    ],
-  }
+// const modules = {
+//     toolbar: [
+//       [{ 'header': [1, 2, false] }],
+//       ['bold', 'italic', 'underline','strike', 'blockquote'],
+//       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+//       ['link', 'image'],
+//       ['clean']
+//     ],
+//   }
 
-const  formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image'
-  ]
+// const  formats = [
+//     'header',
+//     'bold', 'italic', 'underline', 'strike', 'blockquote',
+//     'list', 'bullet', 'indent',
+//     'link', 'image'
+//   ]
 
 export const CreatePost = () => {
 
@@ -61,10 +62,12 @@ export const CreatePost = () => {
                 onChange={e => setSummary(e.target.value)}/>
         <input  type="file" 
                 onChange={e => setFiles(e.target.files)} /> 
-        <ReactQuill value={content} 
+        {/* <ReactQuill value={content} 
                     onChange={newValue=>setContent(newValue)} 
                     modules={modules} 
-                    formats={formats}/>  
+                    formats={formats}/>   */}
+        <Editor value={content}
+                onChange={setContent}/>
         <button style={{marginTop:'5px'}}>Create Post</button>          
     </form>
   )
