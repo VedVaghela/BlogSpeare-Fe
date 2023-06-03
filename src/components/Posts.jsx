@@ -1,19 +1,25 @@
 import React from 'react'
 import ferrari from '../assets/ferrari.jpg'
+import {format} from "date-fns"
+import { Link } from 'react-router-dom'
 
-export const Posts = () => {
+export const Posts = ({_id,title,summary,cover,content,createdAt,author}) => {
   return (
     <div className="blogpost">
       <div className="blogimg">
-      <img src={ferrari} />
+        <Link to={`/postblog/${_id}`}>
+          <img src={'http://localhost:4000/'+cover} />
+        </Link>
       </div>
       <div className="blogtext">
-      <h2>Ferrari never wins</h2>
+      <Link to={`/postblog/${_id}`}>
+      <h2>{title}</h2>
+      </Link>
         <p className="info">
-          <a className="author"> Ved Vaghela</a>
-          <time>2023-05-31 20:00</time>
+          <a className="author">{author.username}</a>
+          <time>{format(new Date(createdAt), 'd MMM yyyy, HH:mm')}</time>
         </p>
-      <p className="summary">Charles Leclerc and Carlos Sainz were eighth and ninth fastest respectively in the first free practice session for the Spanish Grand Prix at the Barcelona-Catalunya Circuit. During the 60 minutes, the Scuderia did a back-to-back comparison between the SF-23 in its previous configuration in the hands of the Monegasque and the other car, driven by the Spaniard, featuring the updates.</p>
+      <p className="summary">{summary}</p>
       </div>
     </div>
   )
